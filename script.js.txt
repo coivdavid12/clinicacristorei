@@ -1,0 +1,61 @@
+script.js
+document.getElementById("agendamentoForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let nome = document.getElementById("nome").value;
+    let telefone = document.getElementById("telefone").value;
+    let especialidade = document.getElementById("especialidade").value;
+    let medico = document.getElementById("medico").value;
+    let data = document.getElementById("data").value;
+    let hora = document.getElementById("hora").value;
+
+    let isValid = true;
+
+    // Limpar mensagens de erro anteriores
+    document.getElementById("nomeError").innerText = "";
+    document.getElementById("telefoneError").innerText = "";
+    document.getElementById("especialidadeError").innerText = "";
+    document.getElementById("medicoError").innerText = "";
+    document.getElementById("dataError").innerText = "";
+    document.getElementById("horaError").innerText = "";
+    
+    // Validando campos
+    if (nome === "") {
+        document.getElementById("nomeError").innerText = "Nome é obrigatório.";
+        isValid = false;
+    }
+    
+    if (telefone === "" || !/^\d{10,11}$/.test(telefone)) {
+        document.getElementById("telefoneError").innerText = "Telefone é obrigatório e deve conter apenas números.";
+        isValid = false;
+    }
+
+    if (especialidade === "") {
+        document.getElementById("especialidadeError").innerText = "Especialidade é obrigatória.";
+        isValid = false;
+    }
+
+    if (medico === "") {
+        document.getElementById("medicoError").innerText = "Médico é obrigatório.";
+        isValid = false;
+    }
+
+    if (data === "") {
+        document.getElementById("dataError").innerText = "Data é obrigatória.";
+        isValid = false;
+    }
+
+    if (hora === "") {
+        document.getElementById("horaError").innerText = "Hora é obrigatória.";
+        isValid = false;
+    }
+
+    // Se todos os campos forem válidos
+    if (isValid) {
+        document.getElementById("message").innerText = "Consulta agendada com sucesso!";
+        document.getElementById("message").style.color = "green";
+    } else {
+        document.getElementById("message").innerText = "Por favor, preencha todos os campos corretamente.";
+        document.getElementById("message").style.color = "red";
+    }
+});
